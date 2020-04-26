@@ -1,3 +1,6 @@
+
+![docker-ci-img](https://github.com/Wefactorit/docker-ci-img/workflows/docker-ci-img/badge.svg)
+
 # Local development
 
 Use `make` command to build a local `test` version of the container
