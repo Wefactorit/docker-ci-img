@@ -3,8 +3,8 @@ ANSIBLE_VERSION ?= 2.9.6
 AWSCLI_VERSION ?= 1.18.46
 
 REGISTRY_URL ?= registry.hub.docker.com
-IMAGE_NAME = dck-ci-runner
-PROJECT ?= wefactorit/docker-ci-img
+IMAGE_NAME = ci-runner
+PROJECT ?= wefactorit
 REMOTE_NAME = ${PROJECT}/$(IMAGE_NAME)
 IMAGE_VERSION ?= test
 
