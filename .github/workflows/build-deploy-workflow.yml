@@ -1,11 +1,10 @@
 
-name: build and deploy docker ci image
+name: docker-ci-img
 
 on: [push]
 
 jobs:
-  build_docker_image:
-    name: build docker image
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checks out a copy of your repository
@@ -14,10 +13,13 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y make
-      - name: download trivy latest version
+      - name: download trivy and install trivy tool
         run: |
           TRIVY_VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') ;
           curl -sfLo - https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz | sudo tar xz -C /usr/bin trivy || true
-      - name: authentication to Github Packages
+      - name: github packages authentication
         run: |
           docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      - name: build docker image
+        run: |
+          make build

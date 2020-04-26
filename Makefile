@@ -4,7 +4,7 @@ AWSCLI_VERSION ?= 1.18.46
 
 REGISTRY_URL ?= docker.pkg.github.com
 IMAGE_NAME = dck-ci-runner
-PROJECT ?= docker-ci-img
+PROJECT ?= wefactorit/docker-ci-img
 REMOTE_NAME = $(REGISTRY_URL)/${PROJECT}/$(IMAGE_NAME)
 IMAGE_VERSION ?= test
 
