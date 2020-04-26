@@ -5,7 +5,7 @@ AWSCLI_VERSION ?= 1.18.46
 REGISTRY_URL ?= registry.hub.docker.com
 IMAGE_NAME = dck-ci-runner
 PROJECT ?= wefactorit/docker-ci-img
-REMOTE_NAME = $(REGISTRY_URL)/${PROJECT}/$(IMAGE_NAME)
+REMOTE_NAME = ${PROJECT}/$(IMAGE_NAME)
 IMAGE_VERSION ?= test
 
 default: build
@@ -22,7 +22,7 @@ build:
 trivy:
 	@if which trivy &> /dev/null ; then \
 		echo "Checking image with Trivy..." ; \
-		trivy --exit-code 1 build/$(IMAGE_NAME):$(IMAGE_VERSION) ; \
+		trivy --exit-code 1 --severity CRITICAL build/$(IMAGE_NAME):$(IMAGE_VERSION) ; \
 	else \
 		echo "Not checking image because Trivy binary not found in path" ; \
 	fi
