@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-      PROJECT: ${{ GITHUB_REPOSITORY }}
-      IMAGE_VERSION: ${{ GITHUB_REF }}
+      PROJECT: ${{ github.repository }}
+      IMAGE_VERSION: ${{ github.ref }}
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
