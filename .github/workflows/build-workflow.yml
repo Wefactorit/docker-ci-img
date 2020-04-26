@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT: ${{ secrets.DOCKER_PROJECT }}
-      IMAGE_VERSION: ${{ github.ref:11 }}
+      IMAGE_VERSION: dev
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2

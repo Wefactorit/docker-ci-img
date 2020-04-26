@@ -4,14 +4,14 @@ name: publish-workflow
 on:
   push:
     tags:
-      - 0.*
+      - v0.*
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     env:
       PROJECT: ${{ secrets.DOCKER_PROJECT }}
-      IMAGE_VERSION: ${{ github.ref:11 }}
+      IMAGE_VERSION: ${{ github.event.release.tag_name }}
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
