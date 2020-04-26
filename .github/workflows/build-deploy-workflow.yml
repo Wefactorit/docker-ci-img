@@ -1,17 +1,17 @@
 
-name: CI
+name: Build and deploy docker ci image
 
 on: [push]
 
 jobs:
   build_docker_image:
-    name: download and install tools
+    name: build docker image
     runs-on: ubuntu-latest
     steps:
-      # checks out a copy of your repository.
+      - name: checks out a copy of your repository
       - uses: actions/checkout@v2
-      # update os and install make tool
+      - name: update ubuntu and install make tool
       - shell: bash
         run: |
-          apt-get update -y
-          apt-get install -y make
+          sudo apt-get update -y
+          sudo apt-get install -y make
