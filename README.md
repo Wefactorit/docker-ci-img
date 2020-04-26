@@ -19,7 +19,7 @@ The `FROM` image version is **pinned** (in the `Dockerfile`) to ensure being abl
 | Name | Description |
 |------|:-------------:|
 | ANSIBLE | 2.9.6 |
-| AWS CLI | 2.0.5 |
+| AWS CLI | 1.18.46 |
 | TERRAFORM | 0.12.24 |
 
 # Release
