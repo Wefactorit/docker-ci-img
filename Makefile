@@ -2,7 +2,7 @@ TERRAFORM_VERSION ?= 0.12.24
 ANSIBLE_VERSION ?= 2.9.6
 AWSCLI_VERSION ?= 1.18.46
 
-REGISTRY_URL ?= docker.pkg.github.com
+REGISTRY_URL ?= registry.hub.docker.com
 IMAGE_NAME = dck-ci-runner
 PROJECT ?= wefactorit/docker-ci-img
 REMOTE_NAME = $(REGISTRY_URL)/${PROJECT}/$(IMAGE_NAME)

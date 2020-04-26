@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-      PROJECT: ${{ github.repository }}
+      PROJECT: ${{ secrets.DOCKER_PROJECT }}
       IMAGE_VERSION: ${{ github.ref }}
     steps:
       - name: checks out a copy of your repository
@@ -26,7 +26,7 @@ jobs:
           curl -sfLo - https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz | sudo tar xz -C /usr/bin trivy || true
       - name: github packages authentication
         run: |
-          docker login $REGISTRY_URL -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_PASSWORD }} 
       - name: publish docker image
         run: |
           make push          
