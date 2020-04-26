@@ -16,7 +16,7 @@ jobs:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
       - name: retrieve branch ref and set image_version env variable
-        run: echo ::set-env name=IMAGE_VERSION::${GITHUB_REF:10}
+        run: echo ::set-env name=IMAGE_VERSION::${GITHUB_REF:11}
       - name: Test
         run: |
           echo $IMAGE_VERSION         
