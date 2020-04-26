@@ -1,0 +1,19 @@
+
+name: CI
+
+on: [push]
+
+jobs:
+  build_docker_image:
+    name: download and install tools
+    runs-on: ubuntu-latest
+    steps:
+      # checks out a copy of your repository.
+      - uses: actions/checkout@v2
+      # update os and install make tool
+      - shell: bash
+        run: |
+          apt-get update -y
+          apt-get install -y make
+
+
