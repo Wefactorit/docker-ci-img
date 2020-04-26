@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-      PROJECT: $GITHUB_REPOSITORY
-      IMAGE_VERSION: $GITHUB_REF
+      PROJECT: ${{ GITHUB_REPOSITORY }}
+      IMAGE_VERSION: ${{ GITHUB_REF }}
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
@@ -22,6 +22,10 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y make
+      - name: download trivy and install trivy tool
+        run: |
+          TRIVY_VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') ;
+          curl -sfLo - https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz | sudo tar xz -C /usr/bin trivy || true          
       - name: github packages authentication
         run: |
           docker login $REGISTRY_URL -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}          
