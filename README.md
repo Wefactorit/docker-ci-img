@@ -1,3 +1,6 @@
+
+![build-status](https://github.com/Wefactorit/docker-ci-img/workflows/build-workflow/badge.svg) - ![publish-status](https://github.com/Wefactorit/docker-ci-img/workflows/publish-workflow/badge.svg)
+
 # Local development
 
 Use `make` command to build a local `test` version of the container
@@ -16,8 +19,14 @@ The `FROM` image version is **pinned** (in the `Dockerfile`) to ensure being abl
 | Name | Description |
 |------|:-------------:|
 | ANSIBLE | 2.9.6 |
-| AWS CLI | 2.0.5 |
+| AWS CLI | 1.18.46 |
 | TERRAFORM | 0.12.24 |
+
+# Container security
+
+Containers security checks are made by [trivy](https://github.com/aquasecurity/trivy)
+
+Currently pipeline will failed only if a CRITICAL issue is raised by [trivy](https://github.com/aquasecurity/trivy)
 
 # Release
 
