@@ -9,9 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checks out a copy of your repository
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: update ubuntu and install make tool
-      - shell: bash
         run: |
           sudo apt-get update -y
           sudo apt-get install -y make
