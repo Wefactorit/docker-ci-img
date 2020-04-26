@@ -1,5 +1,5 @@
 
-![docker-ci-img](https://github.com/Wefactorit/docker-ci-img/workflows/docker-ci-img/badge.svg)
+![docker-ci-img](https://github.com/Wefactorit/docker-ci-img/workflows/build-workflow/badge.svg)
 
 # Local development
 
