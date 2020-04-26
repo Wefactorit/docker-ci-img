@@ -15,7 +15,7 @@ jobs:
       IMAGE_VERSION: dev
     steps:
       - name: checks out a copy of your repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2         
       - name: update ubuntu and install make tool
         run: |
           sudo apt-get update -y
