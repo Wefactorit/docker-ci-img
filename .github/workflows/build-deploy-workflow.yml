@@ -1,5 +1,5 @@
 
-name: Build and deploy docker ci image
+name: build and deploy docker ci image
 
 on: [push]
 
@@ -14,3 +14,8 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y make
+      - name: download trivy latest version
+        run: |
+          TRIVY_VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') ;
+          curl -sfLo - https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz | tar xz -C /usr/bin trivy || true
+          trivy --version
