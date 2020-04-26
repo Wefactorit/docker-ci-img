@@ -22,6 +22,12 @@ The `FROM` image version is **pinned** (in the `Dockerfile`) to ensure being abl
 | AWS CLI | 1.18.46 |
 | TERRAFORM | 0.12.24 |
 
+# Container security
+
+Containers security checks are made by [trivy](https://github.com/aquasecurity/trivy)
+
+Currently pipeline will failed only if a CRITICAL issue is raised by [trivy](https://github.com/aquasecurity/trivy)
+
 # Release
 
 Tag the repo, the CI will do the rest
