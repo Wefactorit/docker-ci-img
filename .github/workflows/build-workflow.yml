@@ -14,7 +14,7 @@ jobs:
     env:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
       PROJECT: ${{ github.repository }}
-      IMAGE_VERSION: ${{ github.ref }}
+      IMAGE_VERSION: dev
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
