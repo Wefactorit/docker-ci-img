@@ -12,10 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT: ${{ secrets.DOCKER_PROJECT }}
-      IMAGE_VERSION: dev
     steps:
       - name: checks out a copy of your repository
         uses: actions/checkout@v2
+      - name: retrieve branch ref and set image_version env variable
+        run: echo ::set-env name=IMAGE_VERSION::${GITHUB_REF:10}
+      - name: Test
+        run: |
+          echo $IMAGE_VERSION         
       - name: update ubuntu and install make tool
         run: |
           sudo apt-get update -y
