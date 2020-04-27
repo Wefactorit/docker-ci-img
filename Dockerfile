@@ -33,6 +33,7 @@ RUN apk add --update --no-cache ca-certificates \
     curl \
     libintl  \
     gettext \
+    bash \
     git \
     libc6-compat \
     jq \
