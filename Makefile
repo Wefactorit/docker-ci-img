@@ -1,6 +1,7 @@
 TERRAFORM_VERSION ?= 0.12.24
 ANSIBLE_VERSION ?= 2.9.6
 AWSCLI_VERSION ?= 1.18.46
+AZCLI_VERSION ?= 2.5.1
 
 REGISTRY_URL ?= registry.hub.docker.com
 IMAGE_NAME = ci-runner
@@ -16,6 +17,7 @@ build:
 		--build-arg TERRAFORM_VERSION=${TERRAFORM_VERSION} \
 		--build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} \
 		--build-arg AWSCLI_VERSION=${AWSCLI_VERSION} \
+		--build-arg AZCLI_VERSION=${AZCLI_VERSION} \
 		-t build/$(IMAGE_NAME):$(IMAGE_VERSION) . --no-cache --pull
 
 .PHONY: trivy

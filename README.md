@@ -19,8 +19,9 @@ The `FROM` image version is **pinned** (in the `Dockerfile`) to ensure being abl
 | Name | Description |
 |------|:-------------:|
 | ANSIBLE | 2.9.6 |
-| AWS CLI | 1.18.46 |
 | TERRAFORM | 0.12.24 |
+| AWS CLI | 1.18.46 |
+| AZ CLI | 2.5.1 |
 
 # Container security
 
@@ -34,9 +35,4 @@ Tag the repo, the CI will do the rest
 ```
 git tag 1.0.0
 git push --tags
-```
-
-The image name is as follow:
-```
-<my-org>/<my-repo>/<my-img>:<tag_with_ref>
 ```
