@@ -21,9 +21,9 @@ RUN mkdir -p /tmp/build \
 FROM alpine:3.10.4
 
 ARG AWSCLI_VERSION
+ARG AZCLI_VERSION
 ARG ANSIBLE_VERSION
-
-WORKDIR /root
+ARG USER=ci-user
 
 # Metadata
 LABEL org.label-schema.build-date=$BUILD_DATE \
@@ -38,7 +38,8 @@ RUN apk add --update --no-cache ca-certificates \
     libc6-compat \
     jq \
     python3 \
-    make
+    make \
+    sudo
 
 # Add required dependencies for ansible
 RUN apk add --update --no-cache ca-certificates --virtual build-dependencies \
@@ -49,6 +50,12 @@ RUN apk add --update --no-cache ca-certificates --virtual build-dependencies \
     python3-dev \
     musl-dev
 
+# Add CI USER for using container as non-root user
+RUN addgroup -S $USER \
+        && adduser -S $USER -G $USER \
+        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
+        && chmod 0440 /etc/sudoers.d/$USER
+
 RUN ln -sf /usr/bin/envsubst /usr/local/bin/envsubst
 # Force Python 3 as default Python
 RUN ln -sf /usr/bin/python3 /usr/bin/python
@@ -57,10 +64,13 @@ COPY requirements.txt .
 
 RUN pip3 install --upgrade pip cffi
 RUN pip3 install -r requirements.txt
-RUN pip3 install "awscli==${AWSCLI_VERSION}" 
+RUN pip3 install "awscli==${AWSCLI_VERSION}"
+RUN pip3 install "azure-cli==${AZCLI_VERSION}" 
 RUN pip3 install "ansible==${ANSIBLE_VERSION}"
 
 RUN chmod a+x /usr/local/bin/*
 COPY --from=build /tmp/build/* /usr/local/bin/
+
+USER $USER
 
 ENTRYPOINT ["/bin/bash","-c"]
